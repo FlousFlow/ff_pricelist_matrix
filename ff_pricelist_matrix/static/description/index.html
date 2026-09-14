@@ -1,49 +1,49 @@
 <section style="max-width:1150px;margin:0 auto;font-family:sans-serif;color:#333;">
 
     <img src="thumbnail.png" style="width:100%;border-radius:8px;"
-         alt="Price Matrix — Category Discounts Manager"/>
+         alt="Price Matrix &#8212; Category Discounts Manager"/>
 
-    <h1 style="color:#714B67;margin:24px 0 8px;">Price Matrix — Category Discounts Manager</h1>
+    <h1 style="color:#714B67;margin:24px 0 8px;">Price Matrix &#8212; Category Discounts Manager</h1>
     <p style="font-size:17px;line-height:1.6;">
-        Manage <strong>Pricelist × Product Category → Discount %</strong> from one
+        Manage <strong>Pricelist &#215; Product Category &#8594; Discount %</strong> from one
         standard Odoo list. Every row is a real <code>product.pricelist.item</code>
         rule (Apply on: Product Category, Compute Price: Discount, Based on:
-        Sales Price) — so Sale Orders, POS, Website and every consumer of the
+        Sales Price) &#8212; so Sale Orders, POS, Website and every consumer of the
         <strong>standard Odoo pricing engine</strong> keep working untouched.
         No parallel pricing engine, no custom front-end: 100% standard views.
     </p>
 
     <h2 style="color:#714B67;">Highlights</h2>
     <ul style="line-height:1.9;">
-        <li><strong>Standard editable list</strong> — one row per (Pricelist × Category), edit the discount inline; native search, grouping, dark mode and RTL.</li>
-        <li><strong>Smart defaults</strong> — new rows are preset to category / percentage / sales price; you only pick the pricelist, the category and the %.</li>
-        <li><strong>Ownership &amp; safety</strong> — the module only touches rules it created (<code>managed_by_matrix</code>); manual pricelist rules are never modified or deleted.</li>
-        <li><strong>Deterministic priority</strong> — deeper category wins over parents, product exceptions win over categories, quantity breaks keep working: standard Odoo rule order, enforced and documented.</li>
-        <li><strong>One rule per cell</strong> — duplicate managed rules for the same pricelist/category are blocked at DB level.</li>
-        <li><strong>Excel import wizard</strong> — upload, auto-detect columns (Barcode → Internal Reference matching, never by name), reverse-engineer per-category discounts, rounding-tolerance normalization (14.999999 → 15), preview with consistent/inconsistent categories before applying.</li>
-        <li><strong>Audit trail</strong> — old/new discount, pricelist, category, user and date for every managed change.</li>
-        <li><strong>Multi-company</strong> — only pricelists of your active companies are visible and editable.</li>
-        <li><strong>Security groups</strong> — Price Matrix User (read) / Price Matrix Administrator (edit, import, history).</li>
-        <li><strong>Uninstall-safe</strong> — managed rules survive as ordinary percentage rules; nothing is deleted behind your back.</li>
+        <li><strong>Standard editable list</strong> &#8212; one row per (Pricelist &#215; Category), edit the discount inline; native search, grouping, dark mode and RTL.</li>
+        <li><strong>Smart defaults</strong> &#8212; new rows are preset to category / percentage / sales price; you only pick the pricelist, the category and the %.</li>
+        <li><strong>Ownership &amp; safety</strong> &#8212; the module only touches rules it created (<code>managed_by_matrix</code>); manual pricelist rules are never modified or deleted.</li>
+        <li><strong>Deterministic priority</strong> &#8212; deeper category wins over parents, product exceptions win over categories, quantity breaks keep working: standard Odoo rule order, enforced and documented.</li>
+        <li><strong>One rule per cell</strong> &#8212; duplicate managed rules for the same pricelist/category are blocked at DB level.</li>
+        <li><strong>Excel import wizard</strong> &#8212; upload, auto-detect columns (Barcode &#8594; Internal Reference matching, never by name), reverse-engineer per-category discounts, rounding-tolerance normalization (14.999999 &#8594; 15), preview with consistent/inconsistent categories before applying.</li>
+        <li><strong>Audit trail</strong> &#8212; old/new discount, pricelist, category, user and date for every managed change.</li>
+        <li><strong>Multi-company</strong> &#8212; only pricelists of your active companies are visible and editable.</li>
+        <li><strong>Security groups</strong> &#8212; Price Matrix User (read) / Price Matrix Administrator (edit, import, history).</li>
+        <li><strong>Uninstall-safe</strong> &#8212; managed rules survive as ordinary percentage rules; nothing is deleted behind your back.</li>
     </ul>
 
     <h2 style="color:#714B67;">Why the behavior is deterministic</h2>
     <p style="line-height:1.6;">
         Standard Odoo picks the first applicable rule in the order
         <code>applied_on, min_quantity desc, categ_id desc, id desc</code>:
-        variant → product → <strong>category</strong> → global, higher
-        <code>min_quantity</code> first, and — because a child category id is
-        always greater than its parent's — the <strong>deepest category always
+        variant &#8594; product &#8594; <strong>category</strong> &#8594; global, higher
+        <code>min_quantity</code> first, and &#8212; because a child category id is
+        always greater than its parent's &#8212; the <strong>deepest category always
         wins</strong>. The module forbids duplicates inside the managed scope,
         so the last tie-break can never surprise you.
     </p>
 
     <h2 style="color:#714B67;">Excel import flow</h2>
     <ol style="line-height:1.8;">
-        <li>Upload the workbook (.xlsx — openpyxl required on the server).</li>
+        <li>Upload the workbook (.xlsx &#8212; openpyxl required on the server).</li>
         <li><strong>Analyze</strong>: columns auto-detected (Barcode / Internal Reference / Category / Base Price; every other column = a pricelist matched by name).</li>
-        <li>Discounts reverse-engineered per category: (Base − Price) / Base, normalized within the rounding tolerance.</li>
-        <li><strong>Preview</strong>: sample counts, min/max, consistent ✔ / inconsistent ⚠ per (category × pricelist). Inconsistent ones default to <em>Skip</em> — never guessed.</li>
+        <li>Discounts reverse-engineered per category: (Base &#8722; Price) / Base, normalized within the rounding tolerance.</li>
+        <li><strong>Preview</strong>: sample counts, min/max, consistent &#10004; / inconsistent &#9888; per (category &#215; pricelist). Inconsistent ones default to <em>Skip</em> &#8212; never guessed.</li>
         <li><strong>Apply</strong> writes through the same audited, constraint-checked path.</li>
     </ol>
 
@@ -51,53 +51,53 @@
     <ul style="line-height:1.8;">
         <li>Requires Odoo 19 Community, <code>sale_management</code> and <code>openpyxl</code>.</li>
         <li>On install the "Pricelists" feature (Odoo 19 setting) is enabled for existing internal users automatically.</li>
-        <li>Start at <strong>Sales ▸ Configuration ▸ Price Category Matrix</strong>.</li>
+        <li>Start at <strong>Sales &#9656; Configuration &#9656; Price Category Matrix</strong>.</li>
     </ul>
 
     <h2 style="color:#714B67;">License</h2>
-    <p>LGPL-3 — © Flous Flow — <a href="https://flousflow.com">flousflow.com</a></p>
+    <p>LGPL-3 &#8212; &#169; Flous Flow &#8212; <a href="https://flousflow.com">flousflow.com</a></p>
 
     <hr style="margin:32px 0;border-color:#eee;"/>
 
-    <h1 style="color:#714B67;margin:24px 0 8px;" dir="rtl">مصفوفة أسعار الفئات — إدارة خصومات الفئات</h1>
+    <h1 style="color:#714B67;margin:24px 0 8px;" dir="rtl">&#1605;&#1589;&#1601;&#1608;&#1601;&#1577; &#1571;&#1587;&#1593;&#1575;&#1585; &#1575;&#1604;&#1601;&#1574;&#1575;&#1578; &#8212; &#1573;&#1583;&#1575;&#1585;&#1577; &#1582;&#1589;&#1608;&#1605;&#1575;&#1578; &#1575;&#1604;&#1601;&#1574;&#1575;&#1578;</h1>
     <p style="font-size:17px;line-height:1.9;" dir="rtl">
-        إدارة <strong>قائمة الأسعار × فئة المنتج ← نسبة الخصم %</strong> من قائمة
-        أودو قياسية واحدة، فوق <strong>محرك التسعير القياسي</strong> — بدون أي
-        محرك موازٍ وبدون أي واجهة مخصوصة: وجهات أودو القياسية 100% مع دعم كامل
-        للعربية (RTL).
+        &#1573;&#1583;&#1575;&#1585;&#1577; <strong>&#1602;&#1575;&#1574;&#1605;&#1577; &#1575;&#1604;&#1571;&#1587;&#1593;&#1575;&#1585; &#215; &#1601;&#1574;&#1577; &#1575;&#1604;&#1605;&#1606;&#1578;&#1580; &#8592; &#1606;&#1587;&#1576;&#1577; &#1575;&#1604;&#1582;&#1589;&#1605; %</strong> &#1605;&#1606; &#1602;&#1575;&#1574;&#1605;&#1577;
+        &#1571;&#1608;&#1583;&#1608; &#1602;&#1610;&#1575;&#1587;&#1610;&#1577; &#1608;&#1575;&#1581;&#1583;&#1577;&#1548; &#1601;&#1608;&#1602; <strong>&#1605;&#1581;&#1585;&#1603; &#1575;&#1604;&#1578;&#1587;&#1593;&#1610;&#1585; &#1575;&#1604;&#1602;&#1610;&#1575;&#1587;&#1610;</strong> &#8212; &#1576;&#1583;&#1608;&#1606; &#1571;&#1610;
+        &#1605;&#1581;&#1585;&#1603; &#1605;&#1608;&#1575;&#1586;&#1613; &#1608;&#1576;&#1583;&#1608;&#1606; &#1571;&#1610; &#1608;&#1575;&#1580;&#1607;&#1577; &#1605;&#1582;&#1589;&#1608;&#1589;&#1577;: &#1608;&#1580;&#1607;&#1575;&#1578; &#1571;&#1608;&#1583;&#1608; &#1575;&#1604;&#1602;&#1610;&#1575;&#1587;&#1610;&#1577; 100% &#1605;&#1593; &#1583;&#1593;&#1605; &#1603;&#1575;&#1605;&#1604;
+        &#1604;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; (RTL).
     </p>
 
-    <h2 style="color:#714B67;" dir="rtl">أهم المميزات</h2>
+    <h2 style="color:#714B67;" dir="rtl">&#1571;&#1607;&#1605; &#1575;&#1604;&#1605;&#1605;&#1610;&#1586;&#1575;&#1578;</h2>
     <ul style="line-height:1.9;" dir="rtl">
-        <li><strong>قائمة قياسية قابلة للتعديل المباشر</strong> — كل صف = (قائمة أسعار × فئة منتج) والنسبة تُدخل في مكانها؛ بحث وتجميع ووضع داكن وRTL من أودو نفسه.</li>
-        <li><strong>تعبيئة ذكية</strong> — الزر «جديد» يجهز الصف (خصم فئة / نسبة مئوية / سعر البيع)؛ تختار القائمة والفئة والنسبة فقط.</li>
-        <li><strong>ملكية وأمان</strong> — الموديول يلمس فقط القواعد التي أنشأها (علامة <code>managed_by_matrix</code>)؛ القواعد اليدوية لا تُعدل ولا تُحذف أبدًا.</li>
-        <li><strong>سلوك حتمي</strong> — الفئة الأعمق تفوز على الأب، واستثناء المنتج يتجاوز الفئة، وكسور الكمية تعمل كالمعتاد: أولوية أودو القياسية موثقة ومضمونة.</li>
-        <li><strong>قاعدة واحدة لكل خلية</strong> — منع تكرار القواعد المُدارة على مستوى قاعدة البيانات.</li>
-        <li><strong>معالج استيراد Excel</strong> — اكتشاف تلقائي للأعمدة، مطابقة بالباركود ثم المرجع (لا بالأسماء)، استخراج الخصومات لكل فئة، تطبيع فروق التقريب (14.999999 ← 15)، ومعاينة قبل التطبيق مع كشف الفئات غير المتسقة.</li>
-        <li><strong>سجل تدقيق</strong> — الخصم القديم/الجديد، القائمة، الفئة، المستخدم والتاريخ لكل تغيير.</li>
-        <li><strong>تعدد الشركات</strong> — قوائم شركاتك النشطة فقط.</li>
-        <li><strong>مجموعتا صلاحية</strong> — مستخدم (عرض) / مدير (تعديل واستيراد وسجل).</li>
-        <li><strong>إلغاء تثبيت آمن</strong> — القواعد تبقى قواعد نسبة مئوية قياسية تعمل طبيعيًا.</li>
+        <li><strong>&#1602;&#1575;&#1574;&#1605;&#1577; &#1602;&#1610;&#1575;&#1587;&#1610;&#1577; &#1602;&#1575;&#1576;&#1604;&#1577; &#1604;&#1604;&#1578;&#1593;&#1583;&#1610;&#1604; &#1575;&#1604;&#1605;&#1576;&#1575;&#1588;&#1585;</strong> &#8212; &#1603;&#1604; &#1589;&#1601; = (&#1602;&#1575;&#1574;&#1605;&#1577; &#1571;&#1587;&#1593;&#1575;&#1585; &#215; &#1601;&#1574;&#1577; &#1605;&#1606;&#1578;&#1580;) &#1608;&#1575;&#1604;&#1606;&#1587;&#1576;&#1577; &#1578;&#1615;&#1583;&#1582;&#1604; &#1601;&#1610; &#1605;&#1603;&#1575;&#1606;&#1607;&#1575;&#1563; &#1576;&#1581;&#1579; &#1608;&#1578;&#1580;&#1605;&#1610;&#1593; &#1608;&#1608;&#1590;&#1593; &#1583;&#1575;&#1603;&#1606; &#1608;RTL &#1605;&#1606; &#1571;&#1608;&#1583;&#1608; &#1606;&#1601;&#1587;&#1607;.</li>
+        <li><strong>&#1578;&#1593;&#1576;&#1610;&#1574;&#1577; &#1584;&#1603;&#1610;&#1577;</strong> &#8212; &#1575;&#1604;&#1586;&#1585; &#171;&#1580;&#1583;&#1610;&#1583;&#187; &#1610;&#1580;&#1607;&#1586; &#1575;&#1604;&#1589;&#1601; (&#1582;&#1589;&#1605; &#1601;&#1574;&#1577; / &#1606;&#1587;&#1576;&#1577; &#1605;&#1574;&#1608;&#1610;&#1577; / &#1587;&#1593;&#1585; &#1575;&#1604;&#1576;&#1610;&#1593;)&#1563; &#1578;&#1582;&#1578;&#1575;&#1585; &#1575;&#1604;&#1602;&#1575;&#1574;&#1605;&#1577; &#1608;&#1575;&#1604;&#1601;&#1574;&#1577; &#1608;&#1575;&#1604;&#1606;&#1587;&#1576;&#1577; &#1601;&#1602;&#1591;.</li>
+        <li><strong>&#1605;&#1604;&#1603;&#1610;&#1577; &#1608;&#1571;&#1605;&#1575;&#1606;</strong> &#8212; &#1575;&#1604;&#1605;&#1608;&#1583;&#1610;&#1608;&#1604; &#1610;&#1604;&#1605;&#1587; &#1601;&#1602;&#1591; &#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583; &#1575;&#1604;&#1578;&#1610; &#1571;&#1606;&#1588;&#1571;&#1607;&#1575; (&#1593;&#1604;&#1575;&#1605;&#1577; <code>managed_by_matrix</code>)&#1563; &#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583; &#1575;&#1604;&#1610;&#1583;&#1608;&#1610;&#1577; &#1604;&#1575; &#1578;&#1615;&#1593;&#1583;&#1604; &#1608;&#1604;&#1575; &#1578;&#1615;&#1581;&#1584;&#1601; &#1571;&#1576;&#1583;&#1611;&#1575;.</li>
+        <li><strong>&#1587;&#1604;&#1608;&#1603; &#1581;&#1578;&#1605;&#1610;</strong> &#8212; &#1575;&#1604;&#1601;&#1574;&#1577; &#1575;&#1604;&#1571;&#1593;&#1605;&#1602; &#1578;&#1601;&#1608;&#1586; &#1593;&#1604;&#1609; &#1575;&#1604;&#1571;&#1576;&#1548; &#1608;&#1575;&#1587;&#1578;&#1579;&#1606;&#1575;&#1569; &#1575;&#1604;&#1605;&#1606;&#1578;&#1580; &#1610;&#1578;&#1580;&#1575;&#1608;&#1586; &#1575;&#1604;&#1601;&#1574;&#1577;&#1548; &#1608;&#1603;&#1587;&#1608;&#1585; &#1575;&#1604;&#1603;&#1605;&#1610;&#1577; &#1578;&#1593;&#1605;&#1604; &#1603;&#1575;&#1604;&#1605;&#1593;&#1578;&#1575;&#1583;: &#1571;&#1608;&#1604;&#1608;&#1610;&#1577; &#1571;&#1608;&#1583;&#1608; &#1575;&#1604;&#1602;&#1610;&#1575;&#1587;&#1610;&#1577; &#1605;&#1608;&#1579;&#1602;&#1577; &#1608;&#1605;&#1590;&#1605;&#1608;&#1606;&#1577;.</li>
+        <li><strong>&#1602;&#1575;&#1593;&#1583;&#1577; &#1608;&#1575;&#1581;&#1583;&#1577; &#1604;&#1603;&#1604; &#1582;&#1604;&#1610;&#1577;</strong> &#8212; &#1605;&#1606;&#1593; &#1578;&#1603;&#1585;&#1575;&#1585; &#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583; &#1575;&#1604;&#1605;&#1615;&#1583;&#1575;&#1585;&#1577; &#1593;&#1604;&#1609; &#1605;&#1587;&#1578;&#1608;&#1609; &#1602;&#1575;&#1593;&#1583;&#1577; &#1575;&#1604;&#1576;&#1610;&#1575;&#1606;&#1575;&#1578;.</li>
+        <li><strong>&#1605;&#1593;&#1575;&#1604;&#1580; &#1575;&#1587;&#1578;&#1610;&#1585;&#1575;&#1583; Excel</strong> &#8212; &#1575;&#1603;&#1578;&#1588;&#1575;&#1601; &#1578;&#1604;&#1602;&#1575;&#1574;&#1610; &#1604;&#1604;&#1571;&#1593;&#1605;&#1583;&#1577;&#1548; &#1605;&#1591;&#1575;&#1576;&#1602;&#1577; &#1576;&#1575;&#1604;&#1576;&#1575;&#1585;&#1603;&#1608;&#1583; &#1579;&#1605; &#1575;&#1604;&#1605;&#1585;&#1580;&#1593; (&#1604;&#1575; &#1576;&#1575;&#1604;&#1571;&#1587;&#1605;&#1575;&#1569;)&#1548; &#1575;&#1587;&#1578;&#1582;&#1585;&#1575;&#1580; &#1575;&#1604;&#1582;&#1589;&#1608;&#1605;&#1575;&#1578; &#1604;&#1603;&#1604; &#1601;&#1574;&#1577;&#1548; &#1578;&#1591;&#1576;&#1610;&#1593; &#1601;&#1585;&#1608;&#1602; &#1575;&#1604;&#1578;&#1602;&#1585;&#1610;&#1576; (14.999999 &#8592; 15)&#1548; &#1608;&#1605;&#1593;&#1575;&#1610;&#1606;&#1577; &#1602;&#1576;&#1604; &#1575;&#1604;&#1578;&#1591;&#1576;&#1610;&#1602; &#1605;&#1593; &#1603;&#1588;&#1601; &#1575;&#1604;&#1601;&#1574;&#1575;&#1578; &#1594;&#1610;&#1585; &#1575;&#1604;&#1605;&#1578;&#1587;&#1602;&#1577;.</li>
+        <li><strong>&#1587;&#1580;&#1604; &#1578;&#1583;&#1602;&#1610;&#1602;</strong> &#8212; &#1575;&#1604;&#1582;&#1589;&#1605; &#1575;&#1604;&#1602;&#1583;&#1610;&#1605;/&#1575;&#1604;&#1580;&#1583;&#1610;&#1583;&#1548; &#1575;&#1604;&#1602;&#1575;&#1574;&#1605;&#1577;&#1548; &#1575;&#1604;&#1601;&#1574;&#1577;&#1548; &#1575;&#1604;&#1605;&#1587;&#1578;&#1582;&#1583;&#1605; &#1608;&#1575;&#1604;&#1578;&#1575;&#1585;&#1610;&#1582; &#1604;&#1603;&#1604; &#1578;&#1594;&#1610;&#1610;&#1585;.</li>
+        <li><strong>&#1578;&#1593;&#1583;&#1583; &#1575;&#1604;&#1588;&#1585;&#1603;&#1575;&#1578;</strong> &#8212; &#1602;&#1608;&#1575;&#1574;&#1605; &#1588;&#1585;&#1603;&#1575;&#1578;&#1603; &#1575;&#1604;&#1606;&#1588;&#1591;&#1577; &#1601;&#1602;&#1591;.</li>
+        <li><strong>&#1605;&#1580;&#1605;&#1608;&#1593;&#1578;&#1575; &#1589;&#1604;&#1575;&#1581;&#1610;&#1577;</strong> &#8212; &#1605;&#1587;&#1578;&#1582;&#1583;&#1605; (&#1593;&#1585;&#1590;) / &#1605;&#1583;&#1610;&#1585; (&#1578;&#1593;&#1583;&#1610;&#1604; &#1608;&#1575;&#1587;&#1578;&#1610;&#1585;&#1575;&#1583; &#1608;&#1587;&#1580;&#1604;).</li>
+        <li><strong>&#1573;&#1604;&#1594;&#1575;&#1569; &#1578;&#1579;&#1576;&#1610;&#1578; &#1570;&#1605;&#1606;</strong> &#8212; &#1575;&#1604;&#1602;&#1608;&#1575;&#1593;&#1583; &#1578;&#1576;&#1602;&#1609; &#1602;&#1608;&#1575;&#1593;&#1583; &#1606;&#1587;&#1576;&#1577; &#1605;&#1574;&#1608;&#1610;&#1577; &#1602;&#1610;&#1575;&#1587;&#1610;&#1577; &#1578;&#1593;&#1605;&#1604; &#1591;&#1576;&#1610;&#1593;&#1610;&#1611;&#1575;.</li>
     </ul>
 
-    <h2 style="color:#714B67;" dir="rtl">لماذا السلوك حتمي؟</h2>
+    <h2 style="color:#714B67;" dir="rtl">&#1604;&#1605;&#1575;&#1584;&#1575; &#1575;&#1604;&#1587;&#1604;&#1608;&#1603; &#1581;&#1578;&#1605;&#1610;&#1567;</h2>
     <p style="line-height:1.8;" dir="rtl">
-        أودو يختار أول قاعدة تنطبق حسب الترتيب القياسي: متغير ← منتج ←
-        <strong>فئة</strong> ← عام، ثم الكسر الكمي، ثم <strong>الفئة الأعمق
-        تفوز دائمًا</strong> (معرف الابن أكبر حتمًا من الأب)، والأحدث أخيرًا —
-        ولهذا يُمنع التكرار داخل النطاق المُدار.
+        &#1571;&#1608;&#1583;&#1608; &#1610;&#1582;&#1578;&#1575;&#1585; &#1571;&#1608;&#1604; &#1602;&#1575;&#1593;&#1583;&#1577; &#1578;&#1606;&#1591;&#1576;&#1602; &#1581;&#1587;&#1576; &#1575;&#1604;&#1578;&#1585;&#1578;&#1610;&#1576; &#1575;&#1604;&#1602;&#1610;&#1575;&#1587;&#1610;: &#1605;&#1578;&#1594;&#1610;&#1585; &#8592; &#1605;&#1606;&#1578;&#1580; &#8592;
+        <strong>&#1601;&#1574;&#1577;</strong> &#8592; &#1593;&#1575;&#1605;&#1548; &#1579;&#1605; &#1575;&#1604;&#1603;&#1587;&#1585; &#1575;&#1604;&#1603;&#1605;&#1610;&#1548; &#1579;&#1605; <strong>&#1575;&#1604;&#1601;&#1574;&#1577; &#1575;&#1604;&#1571;&#1593;&#1605;&#1602;
+        &#1578;&#1601;&#1608;&#1586; &#1583;&#1575;&#1574;&#1605;&#1611;&#1575;</strong> (&#1605;&#1593;&#1585;&#1601; &#1575;&#1604;&#1575;&#1576;&#1606; &#1571;&#1603;&#1576;&#1585; &#1581;&#1578;&#1605;&#1611;&#1575; &#1605;&#1606; &#1575;&#1604;&#1571;&#1576;)&#1548; &#1608;&#1575;&#1604;&#1571;&#1581;&#1583;&#1579; &#1571;&#1582;&#1610;&#1585;&#1611;&#1575; &#8212;
+        &#1608;&#1604;&#1607;&#1584;&#1575; &#1610;&#1615;&#1605;&#1606;&#1593; &#1575;&#1604;&#1578;&#1603;&#1585;&#1575;&#1585; &#1583;&#1575;&#1582;&#1604; &#1575;&#1604;&#1606;&#1591;&#1575;&#1602; &#1575;&#1604;&#1605;&#1615;&#1583;&#1575;&#1585;.
     </p>
 
-    <h2 style="color:#714B67;" dir="rtl">التثبيت</h2>
+    <h2 style="color:#714B67;" dir="rtl">&#1575;&#1604;&#1578;&#1579;&#1576;&#1610;&#1578;</h2>
     <ul style="line-height:1.8;" dir="rtl">
-        <li>أودو 19 Community — يعتمد على <code>sale_management</code> فقط.</li>
-        <li>عند التثبيت تُفعَّل ميزة «قوائم الأسعار» تلقائيًا للمستخدمين الداخليين الحاليين.</li>
-        <li>ابدأ من <strong>المبيعات ▸ الإعدادات ▸ مصفوفة أسعار الفئات</strong>.</li>
-        <li><code>openpyxl</code> مطلوبة على السيرفر لقراءة ملفات Excel.</li>
+        <li>&#1571;&#1608;&#1583;&#1608; 19 Community &#8212; &#1610;&#1593;&#1578;&#1605;&#1583; &#1593;&#1604;&#1609; <code>sale_management</code> &#1601;&#1602;&#1591;.</li>
+        <li>&#1593;&#1606;&#1583; &#1575;&#1604;&#1578;&#1579;&#1576;&#1610;&#1578; &#1578;&#1615;&#1601;&#1593;&#1614;&#1617;&#1604; &#1605;&#1610;&#1586;&#1577; &#171;&#1602;&#1608;&#1575;&#1574;&#1605; &#1575;&#1604;&#1571;&#1587;&#1593;&#1575;&#1585;&#187; &#1578;&#1604;&#1602;&#1575;&#1574;&#1610;&#1611;&#1575; &#1604;&#1604;&#1605;&#1587;&#1578;&#1582;&#1583;&#1605;&#1610;&#1606; &#1575;&#1604;&#1583;&#1575;&#1582;&#1604;&#1610;&#1610;&#1606; &#1575;&#1604;&#1581;&#1575;&#1604;&#1610;&#1610;&#1606;.</li>
+        <li>&#1575;&#1576;&#1583;&#1571; &#1605;&#1606; <strong>&#1575;&#1604;&#1605;&#1576;&#1610;&#1593;&#1575;&#1578; &#9656; &#1575;&#1604;&#1573;&#1593;&#1583;&#1575;&#1583;&#1575;&#1578; &#9656; &#1605;&#1589;&#1601;&#1608;&#1601;&#1577; &#1571;&#1587;&#1593;&#1575;&#1585; &#1575;&#1604;&#1601;&#1574;&#1575;&#1578;</strong>.</li>
+        <li><code>openpyxl</code> &#1605;&#1591;&#1604;&#1608;&#1576;&#1577; &#1593;&#1604;&#1609; &#1575;&#1604;&#1587;&#1610;&#1585;&#1601;&#1585; &#1604;&#1602;&#1585;&#1575;&#1569;&#1577; &#1605;&#1604;&#1601;&#1575;&#1578; Excel.</li>
     </ul>
 
-    <h2 style="color:#714B67;" dir="rtl">الرخصة</h2>
-    <p dir="rtl">LGPL-3 — © Flous Flow — <a href="https://flousflow.com">flousflow.com</a></p>
+    <h2 style="color:#714B67;" dir="rtl">&#1575;&#1604;&#1585;&#1582;&#1589;&#1577;</h2>
+    <p dir="rtl">LGPL-3 &#8212; &#169; Flous Flow &#8212; <a href="https://flousflow.com">flousflow.com</a></p>
 
 </section>
