@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_price_matrix_board"
+              name="Price Category Matrix"
+              parent="sale.menu_sale_config"
+              action="action_price_matrix"
+              groups="group_price_matrix_user"
+              sequence="12"/>
+
+    <menuitem id="menu_price_matrix_exceptions"
+              name="Product Pricing Exceptions"
+              parent="sale.menu_sale_config"
+              action="action_price_matrix_exceptions"
+              groups="group_price_matrix_manager"
+              sequence="13"/>
+
+    <menuitem id="menu_price_matrix_history"
+              name="Matrix Change History"
+              parent="sale.menu_sale_config"
+              action="action_price_matrix_change"
+              groups="group_price_matrix_manager"
+              sequence="14"/>
+</odoo>

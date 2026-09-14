@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_price_matrix_import_form" model="ir.ui.view">
+        <field name="name">price.matrix.import.form</field>
+        <field name="model">price.matrix.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Price Matrix from Excel">
+                <header>
+                    <button name="action_analyze" type="object"
+                            string="Analyze" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_apply" type="object"
+                            string="Apply Selected Categories" class="btn-primary"
+                            invisible="state != 'analyzed'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,analyzed,done"/>
+                </header>
+                <sheet>
+                    <div invisible="state != 'draft'">
+                        <group>
+                            <group>
+                                <field name="file" filename="file_name"/>
+                                <field name="file_name" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="rounding_tolerance"/>
+                            </group>
+                        </group>
+                        <div class="text-muted">
+                            <p>
+                                Expected header: a Barcode or Internal
+                                Reference column, a Product Category column,
+                                an optional Base/List Price column, then one
+                                column per pricelist (column title = pricelist
+                                name). Discounts are reverse-engineered per
+                                category: (Base − Pricelist Price) / Base.
+                            </p>
+                            <p>
+                                Products are matched by Barcode first, then by
+                                Internal Reference. Name-only matching is
+                                never performed. Categories must already
+                                exist; missing ones are reported, never
+                                invented.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div invisible="state == 'draft'">
+                        <group>
+                            <group string="Analysis">
+                                <field name="rows_total"/>
+                                <field name="products_matched"/>
+                                <field name="unmatched_rows"/>
+                                <field name="missing_categories"/>
+                                <field name="invalid_prices"/>
+                                <field name="snapped_count"/>
+                            </group>
+                            <group string="Columns">
+                                <field name="column_report" nolabel="1" colspan="2"/>
+                            </group>
+                        </group>
+                        <field name="line_ids" nolabel="1" colspan="2"
+                               readonly="state != 'analyzed'">
+                            <list editable="bottom" create="false" delete="false">
+                                <field name="categ_id"/>
+                                <field name="pricelist_id"/>
+                                <field name="sample_count" string="Products"/>
+                                <field name="min_discount" string="Min %"/>
+                                <field name="max_discount" string="Max %"/>
+                                <field name="is_consistent" widget="boolean_toggle"
+                                       decoration-danger="not is_consistent"/>
+                                <field name="suggested_discount" string="Suggested %"/>
+                                <field name="chosen_discount"/>
+                                <field name="action" widget="badge"
+                                       decoration-success="action == 'apply'"/>
+                            </list>
+                        </field>
+                        <div class="text-muted" invisible="state != 'analyzed'">
+                            Consistent categories are pre-selected for import.
+                            Inconsistent ones default to "Skip": pick one, set
+                            a Chosen % and switch its action to "Apply" — or
+                            create product-level exceptions later.
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_price_matrix_import" model="ir.actions.act_window">
+        <field name="name">Import Price Matrix (Excel)</field>
+        <field name="res_model">price.matrix.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_price_matrix_board_user,price.matrix.board.user,model_price_matrix_board,group_price_matrix_user,1,0,0,0
+access_price_matrix_change_manager,price.matrix.change.manager,model_price_matrix_change,group_price_matrix_manager,1,0,0,0
+access_price_matrix_import_manager,price.matrix.import.manager,model_price_matrix_import,group_price_matrix_manager,1,1,1,1
+access_price_matrix_import_line_manager,price.matrix.import.line.manager,model_price_matrix_import_line,group_price_matrix_manager,1,1,1,1

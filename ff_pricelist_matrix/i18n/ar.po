@@ -1,0 +1,751 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ff_pricelist_matrix
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20260619\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-14 18:27+0000\n"
+"PO-Revision-Date: 2026-09-14 18:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__action
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_item_matrix_search
+msgid "Active Pricelists"
+msgstr "قوائم الأسعار النشطة"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "Ambiguous barcode/reference matches skipped: %s"
+msgstr "مطابقات باركود/مرجع غامضة تم تخطيها: %s"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Analysis"
+msgstr "التحليل"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Analyze"
+msgstr "تحليل"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "Analyze the file before applying it."
+msgstr "حلّل الملف قبل تطبيقه."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_import__state__done
+msgid "Applied"
+msgstr "تم التطبيق"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_import_line__action__apply
+msgid "Apply"
+msgstr "تطبيق"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Apply Selected Categories"
+msgstr "تطبيق الفئات المحددة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__source__bulk
+msgid "Bulk Operation"
+msgstr "عملية جماعية"
+
+#. module: ff_pricelist_matrix
+#: model:res.groups,comment:ff_pricelist_matrix.group_price_matrix_manager
+msgid ""
+"Can edit matrix cells, run bulk operations, import Excel files and manage "
+"product pricing exceptions."
+msgstr ""
+"يمكنك تعديل خلايا المصفوفة وتنفيذ العمليات الجماعية واستيراد ملفات Excel "
+"وإدارة استثناءات أسعار المنتجات."
+
+#. module: ff_pricelist_matrix
+#: model:res.groups,comment:ff_pricelist_matrix.group_price_matrix_user
+msgid "Can open the Price Category Matrix board in read-only mode."
+msgstr "يمكنك فتح لوحة مصفوفة أسعار الفئات بوضع القراءة فقط."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__line_ids
+msgid "Category Analysis"
+msgstr "تحليل الفئات"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_change_list
+msgid "Changed At"
+msgstr "تاريخ التغيير"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__user_id
+msgid "Changed By"
+msgstr "تم التغيير بواسطة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__chosen_discount
+msgid "Chosen %"
+msgstr "المختار %"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__column_report
+msgid "Column Report"
+msgstr "تقرير الأعمدة"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Columns"
+msgstr "الأعمدة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__is_consistent
+msgid "Consistent"
+msgstr "متسق"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid ""
+"Consistent categories are pre-selected for import.\n"
+"                            Inconsistent ones default to \"Skip\": pick one, set\n"
+"                            a Chosen % and switch its action to \"Apply\" — or\n"
+"                            create product-level exceptions later."
+msgstr ""
+"الفئات المتسقة محددة مسبقًا للاستيراد. الفئات غير المتسقة تُضبط افتراضيًا "
+"على \"تخطي\": راجعها ثم إما اختر خصمًا أو استبعدها."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "Could not read the Excel file: %s"
+msgstr "تعذر قراءة ملف Excel: %s"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.actions.act_window,help:ff_pricelist_matrix.action_price_matrix
+msgid ""
+"Create a row per (Pricelist x Product Category): enter the\n"
+"                Discount % directly in the list. Every row is a standard\n"
+"                pricelist rule, so prices apply everywhere automatically.\n"
+"                Rows created here are owned by the matrix; manual pricelist\n"
+"                rules are never touched."
+msgstr ""
+"أنشئ صفاً لكل (قائمة أسعار × فئة منتج): أدخل نسبة الخصم مباشرة في القائمة. "
+"كل صف قاعدة قوائم أسعار قياسية، فتنطبق الأسعار تلقائيًا في كل مكان. الصفوف "
+"المنشأة هنا مملوكة للمصفوفة؛ القواعد اليدوية لا تُمس أبدًا."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__operation__create
+msgid "Created"
+msgstr "تم الإنشاء"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__create_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__create_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__create_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__create_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__create_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__create_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Discount must be between 0 and 100 (got %s)."
+msgstr "يجب أن يكون الخصم بين 0 و100 (القيمة %s)."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import__snapped_count
+msgid ""
+"Discounts normalized to a rounder value within tolerance (e.g. 14.999999 -> "
+"15)."
+msgstr "خصومات طُبّعت إلى قيمة أقرب داخل السماحية (مثل 14.999999 ← 15)."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__display_name
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__display_name
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__display_name
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__display_name
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_product_pricelist_item__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__file
+msgid "Excel File"
+msgstr "ملف Excel"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__source__import
+msgid "Excel Import"
+msgstr "استيراد Excel"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid ""
+"Expected header: a Barcode or Internal\n"
+"                                Reference column, a Product Category column,\n"
+"                                an optional Base/List Price column, then one\n"
+"                                column per pricelist (column title = pricelist\n"
+"                                name). Discounts are reverse-engineered per\n"
+"                                category: (Base − Pricelist Price) / Base."
+msgstr ""
+"الصف الأول المتوقع: عمود باركود أو مرجع داخلي، عمود فئة المنتج، عمود اختياري"
+" للسعر الأساسي/القائم، ثم عمود لكل قائمة أسعار (عنوان العمود = اسم قائمة "
+"الأسعار). تُستخرج الخصومات لكل فئة: (الأساس − السعر) / الأساس."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__file_name
+msgid "File Name"
+msgstr "اسم الملف"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_product_pricelist_item__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: ff_pricelist_matrix
+#: model:ir.actions.act_window,name:ff_pricelist_matrix.action_price_matrix_import
+msgid "Import Price Matrix (Excel)"
+msgstr "استيراد مصفوفة الأسعار (Excel)"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Import Price Matrix from Excel"
+msgstr "استيراد مصفوفة الأسعار من Excel"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid ""
+"Import applied — %(created)s created, %(updated)s updated, %(deleted)s "
+"removed."
+msgstr ""
+"تم تطبيق الاستيراد — %(created)s إنشاء، %(updated)s تحديث، %(deleted)s حذف."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import_line__action
+msgid ""
+"Inconsistent categories default to \"Skip\": review them and either choose a"
+" discount or leave them out."
+msgstr ""
+"الفئات غير المتسقة تُضبط افتراضيًا على \"تخطي\": راجعها ثم إما اختر خصمًا أو"
+" استبعدها."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__invalid_prices
+msgid "Invalid Prices"
+msgstr "أسعار غير صالحة"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Invalid discount value for cell: %s"
+msgstr "قيمة خصم غير صالحة للخلية: %s"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__write_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__write_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__write_uid
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_board__write_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__write_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__write_date
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__write_date
+msgid "Last Updated on"
+msgstr "تاريخ آخر تحديث"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Malformed cell payload: %s"
+msgstr "بيانات خلية تالفة: %s"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_product_pricelist_item__managed_by_matrix
+msgid "Managed by Price Matrix"
+msgstr "مُدارة بواسطة مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid ""
+"Manual rule(s) already target the same pricelist and category:\n"
+"%s\n"
+"Remove or convert them first, or save again with \"Force\" to keep both (the most recently modified rule would then win)."
+msgstr ""
+"توجد قاعدة/قواعد يدوية تستهدف نفس قائمة الأسعار والفئة:\n"
+"%s\n"
+"احذفها أو حوّلها أولًا، أو أعد الحفظ مع \"فرض\" للإبقاء على القاعدتين (الأحدث تعديلًا تتفوز حينها)."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "Matched pricelist columns: %s"
+msgstr "أعمدة قوائم الأسعار المطابقة: %s"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__source__board
+msgid "Matrix Board"
+msgstr "لوحة المصفوفة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.actions.act_window,name:ff_pricelist_matrix.action_price_matrix_change
+#: model:ir.ui.menu,name:ff_pricelist_matrix.menu_price_matrix_history
+msgid "Matrix Change History"
+msgstr "سجل تغييرات المصفوفة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__max_discount
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Max %"
+msgstr "الحد الأقصى %"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__min_discount
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Min %"
+msgstr "الحد الأدنى %"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__missing_categories
+msgid "Missing Categories"
+msgstr "فئات ناقصة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__new_discount
+msgid "New Discount %"
+msgstr "الخصم الجديد %"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "No \"Product Category\" column found in the header row."
+msgstr "لم يتم العثور على عمود \"فئة المنتج\" في الصف الأول."
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.actions.act_window,help:ff_pricelist_matrix.action_price_matrix
+msgid "No category discount yet"
+msgstr "لا توجد خصومات فئات بعد"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "No category is selected for import."
+msgstr "لا توجد فئة محددة للاستيراد."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid ""
+"No pricelist price columns found in the header row. Every column that is not"
+" barcode/code/category/base is treated as a pricelist column."
+msgstr ""
+"لم يتم العثور على أعمدة أسعار قوائم في الصف الأول. كل عمود ليس "
+"باركود/كود/فئة/أساس يُعامل كعمود قائمة أسعار."
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.actions.act_window,help:ff_pricelist_matrix.action_price_matrix_exceptions
+msgid "No product pricing exception"
+msgstr "لا توجد استثناءات أسعار منتجات"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__old_discount
+msgid "Old Discount %"
+msgstr "الخصم السابق %"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid ""
+"Only Price Matrix Administrators can edit the matrix, run bulk operations or"
+" import Excel files."
+msgstr ""
+"مديرو مصفوفة الأسعار فقط يمكنهم تعديل المصفوفة وتنفيذ العمليات الجماعية أو "
+"استيراد ملفات Excel."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid ""
+"Only one Price Matrix rule is allowed per pricelist and product category.\n"
+"Duplicate(s): %s"
+msgstr ""
+"يُسمح بقاعدة مصفوفة واحدة فقط لكل قائمة أسعار وفئة منتج.\n"
+"المكررات: %s"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__operation
+msgid "Operation"
+msgstr "العملية"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import_line__chosen_discount
+msgid ""
+"Overrides the suggested discount when applying this line (a value of 0 keeps"
+" the suggested one)."
+msgstr ""
+"يتجاوز الخصم المقترح عند تطبيق هذا السطر (القيمة 0 تعني إبقاء المقترح)."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_import__state__analyzed
+msgid "Preview"
+msgstr "معاينة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.actions.act_window,name:ff_pricelist_matrix.action_price_matrix
+#: model:ir.ui.menu,name:ff_pricelist_matrix.menu_price_matrix_board
+msgid "Price Category Matrix"
+msgstr "مصفوفة أسعار الفئات"
+
+#. module: ff_pricelist_matrix
+#: model:res.groups.privilege,name:ff_pricelist_matrix.res_groups_privilege_price_matrix
+msgid "Price Matrix"
+msgstr "مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#: model:res.groups,name:ff_pricelist_matrix.group_price_matrix_manager
+msgid "Price Matrix Administrator"
+msgstr "مدير مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model,name:ff_pricelist_matrix.model_price_matrix_board
+msgid "Price Matrix Board (API)"
+msgstr "لوحة مصفوفة الأسعار (API)"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model,name:ff_pricelist_matrix.model_price_matrix_change
+msgid "Price Matrix Change Log"
+msgstr "سجل تغييرات مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model,name:ff_pricelist_matrix.model_price_matrix_import
+msgid "Price Matrix Excel Import"
+msgstr "استيراد مصفوفة الأسعار من Excel"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model,name:ff_pricelist_matrix.model_price_matrix_import_line
+msgid "Price Matrix Import Analysis Line"
+msgstr "سطر تحليل استيراد مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#: model:res.groups,name:ff_pricelist_matrix.group_price_matrix_user
+msgid "Price Matrix User"
+msgstr "مستخدم مصفوفة الأسعار"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules cannot define a date range."
+msgstr "لا يجوز لقواعد مصفوفة الأسعار تحديد نطاق تواريخ."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules cannot define a minimum quantity."
+msgstr "لا يجوز لقواعد مصفوفة الأسعار تحديد حد أدنى للكمية."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules must apply on a Product Category."
+msgstr "يجب أن تنطبق قواعد مصفوفة الأسعار على فئة منتج."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules must be based on the Sales Price."
+msgstr "يجب أن تعتمد قواعد مصفوفة الأسعار على سعر البيع."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules must compute the price as a percentage discount."
+msgstr "يجب أن تحسب قواعد مصفوفة الأسعار السعر كنسبة خصم."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/product_pricelist_item.py:0
+msgid "Price Matrix rules require a product category."
+msgstr "تتطلب قواعد مصفوفة الأسعار فئة منتج."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__pricelist_id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__pricelist_id
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_item_matrix_search
+msgid "Pricelist"
+msgstr "قائمة الأسعار"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Pricelist \"%s\" belongs to another company."
+msgstr "قائمة الأسعار \"%s\" تتبع شركة أخرى."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model,name:ff_pricelist_matrix.model_product_pricelist_item
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__item_id
+msgid "Pricelist Rule"
+msgstr "قاعدة قائمة الأسعار"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Pricelist not found."
+msgstr "قائمة الأسعار غير موجودة."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__categ_id
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__categ_id
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_item_matrix_search
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: ff_pricelist_matrix
+#: model:ir.actions.act_window,name:ff_pricelist_matrix.action_price_matrix_exceptions
+#: model:ir.ui.menu,name:ff_pricelist_matrix.menu_price_matrix_exceptions
+msgid "Product Pricing Exceptions"
+msgstr "استثناءات أسعار المنتجات"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.actions.act_window,help:ff_pricelist_matrix.action_price_matrix_exceptions
+msgid ""
+"Product exceptions override their category discount. They are\n"
+"                standard pricelist rules and win automatically over category\n"
+"                rules, following Odoo's standard rule priority."
+msgstr ""
+"استثناءات المنتجات تتجاوز خصم فئتها. وهي قواعد قوائم أسعار قياسية تتفوق "
+"تلقائيًا وفق أولوية القواعد القياسية في أودو."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__sample_count
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__products_matched
+msgid "Products Matched"
+msgstr "منتجات مطابقة"
+
+#. module: ff_pricelist_matrix
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid ""
+"Products are matched by Barcode first, then by\n"
+"                                Internal Reference. Name-only matching is\n"
+"                                never performed. Categories must already\n"
+"                                exist; missing ones are reported, never\n"
+"                                invented."
+msgstr ""
+"تتم مطابقة المنتجات بالباركود أولًا ثم بالمرجع الداخلي. لا تتم المطابقة "
+"بالاسم أبدًا. يجب أن تكون الفئات موجودة مسبقًا؛ الفئات الناقصة تُبلَّغ ولا "
+"تُخترع."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__operation__delete
+msgid "Removed"
+msgstr "تم الحذف"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__rounding_tolerance
+msgid "Rounding Tolerance %"
+msgstr "سماحية التقريب %"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__rows_total
+msgid "Rows Total"
+msgstr "إجمالي السطور"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import__missing_categories
+msgid ""
+"Rows whose category does not exist in the database. Categories are never "
+"invented by the import."
+msgstr ""
+"سطور فئتها غير موجودة في قاعدة البيانات. الاستيراد لا يخترع فئات أبدًا."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import__unmatched_rows
+msgid ""
+"Rows whose product could not be matched by Barcode nor by Internal "
+"Reference. Name-only matching is deliberately not performed because product "
+"names may repeat."
+msgstr ""
+"سطور لم يُطابق منتجها بالباركود ولا بالمرجع الداخلي. المطابقة بالاسم فقط غير"
+" متاحة تعمدًا لأن أسماء المنتجات قد تتكرر."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Select at least one category."
+msgstr "حدد فئة واحدة على الأقل."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_import_line__action__skip
+msgid "Skip"
+msgstr "تخطي"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "Skipped columns (no matching pricelist): %s"
+msgstr "أعمدة تم تخطيها (بدون قائمة أسعار مطابقة): %s"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__snapped_count
+msgid "Snapped Count"
+msgstr "قيم مُطبَّعة"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Some pricelists no longer exist."
+msgstr "بعض قوائم الأسعار لم تعد موجودة."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Some product categories no longer exist."
+msgstr "بعض فئات المنتجات لم تعد موجودة."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_change__source
+msgid "Source"
+msgstr "المصدر"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Source and target pricelists must differ."
+msgstr "يجب أن تختلف قائمة الأسعار المصدر عن الهدف."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid "Source or target pricelist not found."
+msgstr "قائمة الأسعار المصدر أو الهدف غير موجودة."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__suggested_discount
+#: model_terms:ir.ui.view,arch_db:ff_pricelist_matrix.view_price_matrix_import_form
+msgid "Suggested %"
+msgstr "المقترح %"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_product_pricelist_item__managed_by_matrix
+msgid ""
+"Technical flag: this rule was created/updated by the Price Matrix board. The"
+" board only ever touches rules carrying this flag; manual rules are never "
+"modified or deleted."
+msgstr ""
+"علامة تقنية: هذه القاعدة أنشأها/حدّثتها لوحة مصفوفة الأسعار. اللوحة تلمس فقط"
+" القواعد الحاملة لهذه العلامة؛ القواعد اليدوية لا تُعدل ولا تُحذف أبدًا."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid ""
+"The Python library \"openpyxl\" is required to read Excel files but is not "
+"available on this server."
+msgstr ""
+"مكتبة بايثون \"openpyxl\" مطلوبة لقراءة ملفات Excel لكنها غير متوفرة على هذا"
+" السيرفر."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "The file has more than %s data rows. Please split it."
+msgstr "الملف يحتوي أكثر من %s سطر بيانات. فضلًا قسّمه."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "The file must contain a header row and data."
+msgstr "يجب أن يحتوي الملف على صف رؤوس وبيانات."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "This file was already analyzed."
+msgstr "تم تحليل هذا الملف مسبقًا."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,help:ff_pricelist_matrix.field_price_matrix_import__rounding_tolerance
+msgid ""
+"Two discounts are considered identical when they differ by less than this "
+"tolerance. Values are also normalized to the shortest decimal representation"
+" within the tolerance (e.g. 14.999999 -> 15)."
+msgstr ""
+"يُعتبر خصمان متطابقين إذا كان الفرق بينهما أقل من هذه السماحية. كما تُطبَّع "
+"القيم إلى أقصر صيغة عشرية داخل السماحية (مثل 14.999999 ← 15)."
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import__unmatched_rows
+msgid "Unmatched Rows"
+msgstr "سطور غير مطابقة"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_change__operation__update
+msgid "Updated"
+msgstr "تم التحديث"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields.selection,name:ff_pricelist_matrix.selection__price_matrix_import__state__draft
+msgid "Upload"
+msgstr "رفع"
+
+#. module: ff_pricelist_matrix
+#: model:ir.model.fields,field_description:ff_pricelist_matrix.field_price_matrix_import_line__wizard_id
+msgid "Wizard"
+msgstr "المعالج"
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/models/price_matrix_board.py:0
+msgid ""
+"You need the \"Price Matrix / User\" access rights to view the Price Matrix "
+"board."
+msgstr "تحتاج صلاحية \"مصفوفة الأسعار / مستخدم\" لعرض لوحة مصفوفة الأسعار."
+
+#. module: ff_pricelist_matrix
+#. odoo-python
+#: code:addons/ff_pricelist_matrix/wizards/price_matrix_import.py:0
+msgid "none"
+msgstr "لا شيء"

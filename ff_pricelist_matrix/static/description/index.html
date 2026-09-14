@@ -1,0 +1,60 @@
+<section style="max-width:1150px;margin:0 auto;font-family:sans-serif;color:#333;">
+
+    <img src="thumbnail.png" style="width:100%;border-radius:8px;"
+         alt="Price Matrix — Category Discounts Manager"/>
+
+    <h1 style="color:#714B67;margin:24px 0 8px;">Price Matrix — Category Discounts Manager</h1>
+    <p style="font-size:17px;line-height:1.6;">
+        Manage <strong>Pricelist × Product Category → Discount %</strong> from one
+        standard Odoo list. Every row is a real <code>product.pricelist.item</code>
+        rule (Apply on: Product Category, Compute Price: Discount, Based on:
+        Sales Price) — so Sale Orders, POS, Website and every consumer of the
+        <strong>standard Odoo pricing engine</strong> keep working untouched.
+        No parallel pricing engine, no custom front-end: 100% standard views.
+    </p>
+
+    <h2 style="color:#714B67;">Highlights</h2>
+    <ul style="line-height:1.9;">
+        <li><strong>Standard editable list</strong> — one row per (Pricelist × Category), edit the discount inline; native search, grouping, dark mode and RTL.</li>
+        <li><strong>Smart defaults</strong> — new rows are preset to category / percentage / sales price; you only pick the pricelist, the category and the %.</li>
+        <li><strong>Ownership &amp; safety</strong> — the module only touches rules it created (<code>managed_by_matrix</code>); manual pricelist rules are never modified or deleted.</li>
+        <li><strong>Deterministic priority</strong> — deeper category wins over parents, product exceptions win over categories, quantity breaks keep working: standard Odoo rule order, enforced and documented.</li>
+        <li><strong>One rule per cell</strong> — duplicate managed rules for the same pricelist/category are blocked at DB level.</li>
+        <li><strong>Excel import wizard</strong> — upload, auto-detect columns (Barcode → Internal Reference matching, never by name), reverse-engineer per-category discounts, rounding-tolerance normalization (14.999999 → 15), preview with consistent/inconsistent categories before applying.</li>
+        <li><strong>Audit trail</strong> — old/new discount, pricelist, category, user and date for every managed change.</li>
+        <li><strong>Multi-company</strong> — only pricelists of your active companies are visible and editable.</li>
+        <li><strong>Security groups</strong> — Price Matrix User (read) / Price Matrix Administrator (edit, import, history).</li>
+        <li><strong>Uninstall-safe</strong> — managed rules survive as ordinary percentage rules; nothing is deleted behind your back.</li>
+    </ul>
+
+    <h2 style="color:#714B67;">Why the behavior is deterministic</h2>
+    <p style="line-height:1.6;">
+        Standard Odoo picks the first applicable rule in the order
+        <code>applied_on, min_quantity desc, categ_id desc, id desc</code>:
+        variant → product → <strong>category</strong> → global, higher
+        <code>min_quantity</code> first, and — because a child category id is
+        always greater than its parent's — the <strong>deepest category always
+        wins</strong>. The module forbids duplicates inside the managed scope,
+        so the last tie-break can never surprise you.
+    </p>
+
+    <h2 style="color:#714B67;">Excel import flow</h2>
+    <ol style="line-height:1.8;">
+        <li>Upload the workbook (.xlsx — openpyxl required on the server).</li>
+        <li><strong>Analyze</strong>: columns auto-detected (Barcode / Internal Reference / Category / Base Price; every other column = a pricelist matched by name).</li>
+        <li>Discounts reverse-engineered per category: (Base − Price) / Base, normalized within the rounding tolerance.</li>
+        <li><strong>Preview</strong>: sample counts, min/max, consistent ✔ / inconsistent ⚠ per (category × pricelist). Inconsistent ones default to <em>Skip</em> — never guessed.</li>
+        <li><strong>Apply</strong> writes through the same audited, constraint-checked path.</li>
+    </ol>
+
+    <h2 style="color:#714B67;">Installation</h2>
+    <ul style="line-height:1.8;">
+        <li>Requires Odoo 19 Community, <code>sale_management</code> and <code>openpyxl</code>.</li>
+        <li>On install the "Pricelists" feature (Odoo 19 setting) is enabled for existing internal users automatically.</li>
+        <li>Start at <strong>Sales ▸ Configuration ▸ Price Category Matrix</strong>.</li>
+    </ul>
+
+    <h2 style="color:#714B67;">License</h2>
+    <p>LGPL-3 — © Flous Flow — <a href="https://flousflow.com">flousflow.com</a></p>
+
+</section>

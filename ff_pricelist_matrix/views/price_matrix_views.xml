@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Price Category Matrix — 100% standard Odoo editable list    -->
+    <!-- of the matrix-managed pricelist rules. No custom JS/CSS:    -->
+    <!-- native search, grouping, pagination, dark mode and RTL.     -->
+    <!-- ============================================================ -->
+    <record id="view_item_matrix_list" model="ir.ui.view">
+        <field name="name">product.pricelist.item.matrix.list</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="pricelist_id"/>
+                <field name="categ_id"/>
+                <field name="percent_price"/>
+                <field name="write_date" optional="show"/>
+                <field name="applied_on" column_invisible="1"/>
+                <field name="compute_price" column_invisible="1"/>
+                <field name="base" column_invisible="1"/>
+                <field name="min_quantity" column_invisible="1"/>
+                <field name="managed_by_matrix" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_item_matrix_search" model="ir.ui.view">
+        <field name="name">product.pricelist.item.matrix.search</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="pricelist_id"/>
+                <field name="categ_id"/>
+                <filter name="filter_active_pricelists"
+                        string="Active Pricelists"
+                        domain="[('pricelist_id.active', '=', True)]"/>
+                <group>
+                    <filter name="group_categ" string="Product Category"
+                            context="{'group_by': 'categ_id'}"/>
+                    <filter name="group_pricelist" string="Pricelist"
+                            context="{'group_by': 'pricelist_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_price_matrix" model="ir.actions.act_window">
+        <field name="name">Price Category Matrix</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'list', 'view_id': ref('view_item_matrix_list')}),
+        ]"/>
+        <field name="domain">[('managed_by_matrix', '=', True)]</field>
+        <field name="context">{
+            'default_applied_on': '2_product_category',
+            'default_compute_price': 'percentage',
+            'default_base': 'list_price',
+            'default_min_quantity': 0,
+            'default_managed_by_matrix': True,
+        }</field>
+        <field name="search_view_id" ref="view_item_matrix_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No category discount yet
+            </p>
+            <p>
+                Create a row per (Pricelist x Product Category): enter the
+                Discount % directly in the list. Every row is a standard
+                pricelist rule, so prices apply everywhere automatically.
+                Rows created here are owned by the matrix; manual pricelist
+                rules are never touched.
+            </p>
+        </field>
+    </record>
+
+    <!-- Change audit trail -->
+    <record id="view_price_matrix_change_list" model="ir.ui.view">
+        <field name="name">price.matrix.change.list</field>
+        <field name="model">price.matrix.change</field>
+        <field name="arch" type="xml">
+            <list create="false" edit="false" delete="false">
+                <field name="create_date" string="Changed At"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="pricelist_id"/>
+                <field name="categ_id"/>
+                <field name="operation" widget="badge"
+                       decoration-success="operation == 'create'"
+                       decoration-info="operation == 'update'"
+                       decoration-danger="operation == 'delete'"/>
+                <field name="old_discount"/>
+                <field name="new_discount"/>
+                <field name="source"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_price_matrix_change" model="ir.actions.act_window">
+        <field name="name">Matrix Change History</field>
+        <field name="res_model">price.matrix.change</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <!-- Product-level pricing exceptions (standard rules, just filtered) -->
+    <record id="view_price_matrix_exceptions_list" model="ir.ui.view">
+        <field name="name">product.pricelist.item.matrix.exceptions.list</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="pricelist_id" groups="product.group_sale_pricelist"/>
+                <field name="product_tmpl_id"/>
+                <field name="product_id" groups="product.group_product_variant"/>
+                <field name="applied_on"/>
+                <field name="categ_id"/>
+                <field name="min_quantity"/>
+                <field name="compute_price"/>
+                <field name="percent_price"/>
+                <field name="fixed_price"/>
+                <field name="date_start" optional="hide"/>
+                <field name="date_end" optional="hide"/>
+                <field name="managed_by_matrix" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="product_uom_name" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_price_matrix_exceptions" model="ir.actions.act_window">
+        <field name="name">Product Pricing Exceptions</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('applied_on', 'in', ['1_product', '0_product_variant'])]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No product pricing exception
+            </p>
+            <p>
+                Product exceptions override their category discount. They are
+                standard pricelist rules and win automatically over category
+                rules, following Odoo's standard rule priority.
+            </p>
+        </field>
+    </record>
+</odoo>
