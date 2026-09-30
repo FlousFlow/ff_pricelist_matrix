@@ -17,7 +17,7 @@
                 <field name="applied_on" column_invisible="1"/>
                 <field name="compute_price" column_invisible="1"/>
                 <field name="base" column_invisible="1"/>
-                <field name="min_quantity" column_invisible="1"/>
+                <field name="min_quantity" string="Minimum Quantity"/>
                 <field name="managed_by_matrix" column_invisible="1"/>
             </list>
         </field>
@@ -64,9 +64,11 @@
                 No category discount yet
             </p>
             <p>
-                Create a row per (Pricelist x Product Category): enter the
-                Discount % directly in the list. Every row is a standard
-                pricelist rule, so prices apply everywhere automatically.
+                Create one row per (Pricelist x Product Category x Minimum
+                Quantity): enter the minimum product quantity and Discount %
+                directly in the list. Leave Minimum Quantity at 0 to enable an
+                optional base tier; positive values are standard Odoo quantity
+                breaks and the highest applicable tier wins automatically.
                 Rows created here are owned by the matrix; manual pricelist
                 rules are never touched.
             </p>

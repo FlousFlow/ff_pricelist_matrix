@@ -13,7 +13,9 @@ def post_init_hook(env):
        (Toggling it off later remains possible and simply archives pricelists.)
 
     2. Create a partial unique index protecting the managed scope from
-       duplicates (same pricelist + category), even under concurrent edits.
+       duplicates (same pricelist + category + minimum quantity), even under
+       concurrent edits. The drop/recreate also migrates the narrower index
+       used by older releases before quantity tiers were supported.
        It is a raw index (not models.Constraint) because the uniqueness only
        applies to matrix-managed rules; standard Odoo allows duplicate rules
        for date ranges / quantity breaks and we must not restrict that.
@@ -29,8 +31,9 @@ def post_init_hook(env):
 
     env.cr.execute(
         """
+        DROP INDEX IF EXISTS ff_price_matrix_managed_uniq_idx;
         CREATE UNIQUE INDEX IF NOT EXISTS ff_price_matrix_managed_uniq_idx
-        ON product_pricelist_item (pricelist_id, categ_id)
+        ON product_pricelist_item (pricelist_id, categ_id, min_quantity)
         WHERE managed_by_matrix AND applied_on = '2_product_category'
         """
     )

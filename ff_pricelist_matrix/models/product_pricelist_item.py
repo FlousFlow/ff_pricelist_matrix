@@ -78,7 +78,9 @@ class ProductPricelistItem(models.Model):
         """A managed rule is, by design, a pure category discount:
 
             applied_on = '2_product_category' + compute_price = 'percentage'
-            + base = 'list_price' + min_quantity = 0 + no date range.
+            + base = 'list_price' + a non-negative min_quantity + no date
+            range. A zero minimum is the optional base tier; positive values
+            are standard Odoo quantity breaks.
 
         Keeping the scope narrow is what makes matrix behavior deterministic
         (standard first-match order: applied_on, min_quantity desc, categ_id
@@ -101,16 +103,17 @@ class ProductPricelistItem(models.Model):
             if not item.categ_id:
                 raise ValidationError(_(
                     "Price Matrix rules require a product category."))
-            if item.min_quantity:
+            if item.min_quantity < 0:
                 raise ValidationError(_(
-                    "Price Matrix rules cannot define a minimum quantity."))
+                    "Price Matrix minimum quantity cannot be negative."))
             if item.date_start or item.date_end:
                 raise ValidationError(_(
                     "Price Matrix rules cannot define a date range."))
 
-    @api.constrains('managed_by_matrix', 'pricelist_id', 'categ_id')
+    @api.constrains('managed_by_matrix', 'pricelist_id', 'categ_id',
+                    'min_quantity')
     def _check_matrix_managed_uniq(self):
-        """Prevent two managed rules for the same (pricelist, category).
+        """Prevent two managed rules for the same quantity tier.
 
         Standard Odoo tolerates duplicate rules on purpose (date ranges,
         quantity breaks...), so the restriction applies to the managed scope
@@ -126,7 +129,7 @@ class ProductPricelistItem(models.Model):
                 ('pricelist_id', 'in', managed.pricelist_id.ids),
                 ('categ_id', 'in', managed.categ_id.ids),
             ],
-            groupby=['pricelist_id', 'categ_id'],
+            groupby=['pricelist_id', 'categ_id', 'min_quantity'],
             aggregates=['__count'],
             having=[('__count', '>', 1)],
         )
@@ -135,7 +138,8 @@ class ProductPricelistItem(models.Model):
                 "Only one Price Matrix rule is allowed per pricelist and "
                 "product category.\nDuplicate(s): %s",
                 ", ".join(
-                    f"{pricelist.display_name} / {categ.display_name}"
-                    for pricelist, categ, _count in groups
+                    f"{pricelist.display_name} / {categ.display_name} "
+                    f"(minimum {min_quantity:g})"
+                    for pricelist, categ, min_quantity, _count in groups
                 ),
             ))

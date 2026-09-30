@@ -17,9 +17,10 @@ front-end**: 100% standard Odoo views.
 
 * A **100% standard Odoo editable list** of the matrix-managed rules — no
   custom JS or CSS: native search, grouping, dark mode and RTL.
-* One row per (Pricelist x Product Category); edit the discount inline.
+* One row per (Pricelist x Product Category x Minimum Quantity); edit the
+  minimum product quantity and discount inline.
 * New rows are preset for you (category / percentage discount / sales price) —
-  pick the pricelist, the category and the %.
+  pick the pricelist, category, minimum quantity and %.
 * `Import Excel` runs the analysis wizard described below.
 
 ## Ownership & safety
@@ -29,8 +30,9 @@ The module only ever touches rules it created itself (flag
 
 * deleting a managed row removes **its own** rule
 * creating a row where a manual rule already targets the same
-  (pricelist, category) is **blocked** with a clear message
-* one managed rule per (pricelist, category) — guaranteed at DB level
+  (pricelist, category, minimum quantity) is **blocked** with a clear message
+* one managed rule per (pricelist, category, minimum quantity) — guaranteed at
+  DB level
 * uninstall-safe: managed rules survive as ordinary percentage rules; the
   ownership flag column is simply dropped
 
@@ -107,7 +109,7 @@ odoo -d <database> -u ff_pricelist_matrix --test-enable \
 `المبيعات ▸ الإعدادات ▸ مصفوفة أسعار الفئات`
 
 * قائمة أودو قياسية 100% قابلة للتعديل المباشر — كل صف = (قائمة أسعار × فئة
-  منتج) والنسبة تُدخل في مكانها.
+  منتج × الحد الأدنى للكمية) والنسبة تُدخل في مكانها.
 * زر «جديد» يجهّز الصف تلقائيًا (خصم فئة / نسبة مئوية / سعر البيع) — تختار
   القائمة والفئة والنسبة فقط.
 * زر «استيراد Excel» يشغّل معالج الاستيراد بالتحليل والمعاينة.

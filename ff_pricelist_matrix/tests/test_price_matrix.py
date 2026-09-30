@@ -457,3 +457,55 @@ class TestPriceMatrix(TransactionCase):
         # rules (pure standard percentage rules) must still price products.
         self.pl_wholesale.item_ids.write({'managed_by_matrix': False})
         self.assertPrice(self.pl_wholesale, self.p_cinnamon, 17.0)
+
+    # ------------------------------------------------------------------
+    # 17 — quantity tiers are standard category rules
+    # ------------------------------------------------------------------
+    def test_17_category_quantity_tiers(self):
+        """Higher standard min_quantity wins; no custom pricing engine."""
+        base = self.env['product.pricelist.item'].create({
+            'pricelist_id': self.pl_wholesale.id,
+            'categ_id': self.categ_mini.id,
+            'applied_on': '2_product_category',
+            'compute_price': 'percentage',
+            'base': 'list_price',
+            'percent_price': 5.0,
+            'min_quantity': 0,
+            'managed_by_matrix': True,
+        })
+        tier_10 = self.env['product.pricelist.item'].create({
+            'pricelist_id': self.pl_wholesale.id,
+            'categ_id': self.categ_mini.id,
+            'applied_on': '2_product_category',
+            'compute_price': 'percentage',
+            'base': 'list_price',
+            'percent_price': 10.0,
+            'min_quantity': 10,
+            'managed_by_matrix': True,
+        })
+        tier_50 = self.env['product.pricelist.item'].create({
+            'pricelist_id': self.pl_wholesale.id,
+            'categ_id': self.categ_mini.id,
+            'applied_on': '2_product_category',
+            'compute_price': 'percentage',
+            'base': 'list_price',
+            'percent_price': 15.0,
+            'min_quantity': 50,
+            'managed_by_matrix': True,
+        })
+        self.assertPrice(self.pl_wholesale, self.p_cinnamon, 19.0, 1)
+        self.assertPrice(self.pl_wholesale, self.p_cinnamon, 18.0, 10)
+        self.assertPrice(self.pl_wholesale, self.p_cinnamon, 17.0, 50)
+        self.assertTrue(base.exists() and tier_10.exists() and tier_50.exists())
+
+        with self.assertRaises(pg_errors.UniqueViolation):
+            self.env['product.pricelist.item'].create({
+                'pricelist_id': self.pl_wholesale.id,
+                'categ_id': self.categ_mini.id,
+                'applied_on': '2_product_category',
+                'compute_price': 'percentage',
+                'base': 'list_price',
+                'percent_price': 20.0,
+                'min_quantity': 10,
+                'managed_by_matrix': True,
+            })

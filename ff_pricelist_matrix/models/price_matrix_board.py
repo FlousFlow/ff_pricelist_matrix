@@ -75,7 +75,7 @@ class PriceMatrixBoard(models.Model):
         def depth_of(categ):
             return max(len(categ.parent_path.rstrip('/').split('/')) - 1, 0)
 
-        cells, manual_cells = [], []
+        cells, manual_cells, quantity_breaks = [], [], []
         managed_item_ids = set()
         for item in items:
             entry = {
@@ -92,6 +92,8 @@ class PriceMatrixBoard(models.Model):
             else:
                 entry['kind'] = 'qty_break' if item.min_quantity else 'manual'
                 manual_cells.append(entry)
+                if item.managed_by_matrix and item.min_quantity:
+                    quantity_breaks.append(entry)
 
         # Ancestor coverage: a rule on an ancestor category also applies to
         # its descendants (standard parent_path matching). Surface those
@@ -149,6 +151,7 @@ class PriceMatrixBoard(models.Model):
             } for c in categories],
             'cells': cells,
             'manual_cells': manual_cells,
+            'quantity_breaks': quantity_breaks,
             'managed_ancestors': managed_ancestors,
             'global_counts': global_counts,
         }
