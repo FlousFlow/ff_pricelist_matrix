@@ -82,8 +82,8 @@ editable.
 
 ## Requirements / notes
 
-* Odoo 19 Community — depends on `sale_management` only.
-* On install, the *Pricelists* feature (Odoo 19 setting
+* Odoo 20 Community — depends on `sale_management` only.
+* On install, the *Pricelists* feature (Odoo 20 setting
   `product.group_product_pricelist`) is enabled for existing internal users —
   without it Odoo ignores pricelists on orders.
 * `openpyxl` is required on the server for Excel import.

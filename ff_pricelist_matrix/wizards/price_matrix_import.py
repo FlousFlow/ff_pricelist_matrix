@@ -113,8 +113,12 @@ class PriceMatrixImport(models.TransientModel):
                 "The Python library \"openpyxl\" is required to read Excel "
                 "files but is not available on this server.")) from exc
         try:
+            file_value = self.file
+            file_content = getattr(file_value, 'content', None)
+            if file_content is None:
+                file_content = base64.b64decode(file_value)
             workbook = openpyxl.load_workbook(
-                io.BytesIO(base64.b64decode(self.file)),
+                io.BytesIO(file_content),
                 read_only=True, data_only=True,
             )
         except Exception as exc:

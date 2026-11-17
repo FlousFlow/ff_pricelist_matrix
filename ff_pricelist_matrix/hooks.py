@@ -5,7 +5,7 @@ from odoo import Command
 def post_init_hook(env):
     """Post-installation setup.
 
-    1. Enable the "Pricelists" feature for existing internal users. In Odoo 19
+    1. Enable the "Pricelists" feature for existing internal users. In Odoo 20
        the pricelist engine is gated behind ``product.group_product_pricelist``
        (Settings > Sales > Pricing > Pricelists). A module whose whole purpose
        is pricelist management must have that feature on; adding the group to
@@ -24,7 +24,7 @@ def post_init_hook(env):
     """
     group_user = env.ref('base.group_user')
     pricelist_group = env.ref('product.group_product_pricelist')
-    # Odoo 19: the res.users groups field is `group_ids`
+    # Odoo 20: the res.users groups field is `group_ids`
     users = env['res.users'].search([('group_ids', 'in', group_user.ids)])
     if pricelist_group not in users.group_ids:
         users.write({'group_ids': [Command.link(pricelist_group.id)]})

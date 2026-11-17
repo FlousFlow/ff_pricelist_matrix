@@ -1,7 +1,7 @@
-# Flous Flow — Odoo 19 Modules / موديولات Flous Flow لأودو 19
+# Flous Flow — Odoo 20 Modules / موديولات Flous Flow لأودو 20
 
-Official Flous Flow add-ons for Odoo 19 Community.
-موديولات Flous Flow الرسمية لأودو 19 Community — بدعم كامل للعربية (RTL).
+Official Flous Flow add-ons for Odoo 20 Community.
+موديولات Flous Flow الرسمية لأودو 20 Community — بدعم كامل للعربية (RTL).
 
 ## Modules / الموديولات
 
@@ -15,7 +15,7 @@ Clone this repository and add its path to your `addons_path`, then install
 the module from the Apps menu.
 
 ```bash
-git clone https://github.com/FlousFlow/ff_pricelist_matrix.git -b 19.0
+git clone https://github.com/FlousFlow/ff_pricelist_matrix.git -b 20.0
 ```
 
 استنسخ الريبو وأضف مساره إلى `addons_path` ثم ثبّت الموديول من قائمة التطبيقات.

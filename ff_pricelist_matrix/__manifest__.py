@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3).
 {
     'name': 'Price Matrix - Category Discounts Manager',
-    'version': '19.0.1.3.0',
+    'version': '20.0.1.0.0',
     'category': 'Sales/Sales',
     'summary': 'Excel-like matrix to manage per-product-category discounts on '
                'pricelists, on top of the standard Odoo pricing engine.',
@@ -47,7 +47,7 @@ Highlights
     ],
     'data': [
         'security/security_groups.xml',
-        'security/ir.model.access.csv',
+        'security/ir.access.csv',
         'views/price_matrix_views.xml',
         'wizards/price_matrix_import_views.xml',
         'views/menus.xml',

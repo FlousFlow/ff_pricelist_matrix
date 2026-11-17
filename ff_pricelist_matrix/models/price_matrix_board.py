@@ -8,7 +8,7 @@ from odoo.tools import float_compare
 _logger = logging.getLogger(__name__)
 
 MANAGED_APPLIED_ON = '2_product_category'
-MANAGED_COMPUTE_PRICE = 'percentage'
+MANAGED_COMPUTE_PRICE = 'discount'
 MANAGED_BASE = 'list_price'
 
 # cell dict keys coming from the client
@@ -63,7 +63,7 @@ class PriceMatrixBoard(models.Model):
             order='sequence, id',
         )
         categories = self.env['product.category'].sudo().search(
-            [], order='complete_name')
+            [], order='parent_path, name, id')
 
         items = Item.search([
             ('pricelist_id', 'in', pricelists.ids),
@@ -82,7 +82,7 @@ class PriceMatrixBoard(models.Model):
                 'item_id': item.id,
                 'pricelist_id': item.pricelist_id.id,
                 'categ_id': item.categ_id.id,
-                'discount': item.percent_price,
+                'discount': item.price_discount,
                 'min_quantity': item.min_quantity,
                 'label': item.name,
             }
@@ -230,7 +230,7 @@ class PriceMatrixBoard(models.Model):
             elif item is not None and discount is None:
                 to_unlink.append(item)
             elif (item is not None and discount is not None
-                    and float_compare(item.percent_price, discount,
+                    and float_compare(item.price_discount, discount,
                                       precision_digits=4) != 0):
                 to_write.append((item, discount))
 
@@ -266,20 +266,20 @@ class PriceMatrixBoard(models.Model):
 
         if to_create:
             # NOTE: `name` is a non-stored computed field on
-            # product.pricelist.item in Odoo 19 — never pass it in vals.
+            # product.pricelist.item in Odoo 20 — never pass it in vals.
             Item.create([{
                 'pricelist_id': pl_id,
                 'categ_id': categ_id,
                 'applied_on': MANAGED_APPLIED_ON,
                 'compute_price': MANAGED_COMPUTE_PRICE,
                 'base': MANAGED_BASE,
-                'percent_price': discount,
+                'price_discount': discount,
                 'min_quantity': 0,
                 'managed_by_matrix': True,
             } for pl_id, categ_id, discount in to_create])
 
         for item, discount in to_write:
-            item.write({'percent_price': discount})
+            item.write({'price_discount': discount})
 
         if to_unlink:
             Item.browse([it.id for it in to_unlink]).unlink()
@@ -352,7 +352,7 @@ class PriceMatrixBoard(models.Model):
         ])
         cells = [
             {'pricelist_id': target.id, 'categ_id': it.categ_id.id,
-             'discount': it.percent_price}
+             'discount': it.price_discount}
             for it in source_items
         ]
         if not overwrite_existing and cells:

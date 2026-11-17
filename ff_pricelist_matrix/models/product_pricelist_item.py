@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 MANAGED_APPLIED_ON = '2_product_category'
-MANAGED_COMPUTE_PRICE = 'percentage'
+MANAGED_COMPUTE_PRICE = 'discount'
 MANAGED_BASE = 'list_price'
 
 
@@ -43,30 +43,30 @@ class ProductPricelistItem(models.Model):
 
     def write(self, vals):
         audit = []
-        if 'percent_price' in vals:
+        if 'price_discount' in vals:
             audit = [
-                (item.id, item.percent_price)
+                (item.id, item.price_discount)
                 for item in self.filtered('managed_by_matrix')
-                if float_compare(item.percent_price, vals['percent_price'],
+                if float_compare(item.price_discount, vals['price_discount'],
                                  precision_digits=4) != 0
             ]
         res = super().write(vals)
         Item = self.env['product.pricelist.item']
         for item_id, old in audit:
             Item.browse(item_id)._matrix_audit(
-                'update', old, vals['percent_price'])
+                'update', old, vals['price_discount'])
         return res
 
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
         for record in records.filtered('managed_by_matrix'):
-            record._matrix_audit('create', 0.0, record.percent_price)
+            record._matrix_audit('create', 0.0, record.price_discount)
         return records
 
     def unlink(self):
         for item in self.filtered('managed_by_matrix'):
-            item._matrix_audit('delete', item.percent_price, 0.0)
+            item._matrix_audit('delete', item.price_discount, 0.0)
         return super().unlink()
 
     # ------------------------------------------------------------------
@@ -77,7 +77,7 @@ class ProductPricelistItem(models.Model):
     def _check_matrix_managed_scope(self):
         """A managed rule is, by design, a pure category discount:
 
-            applied_on = '2_product_category' + compute_price = 'percentage'
+            applied_on = '2_product_category' + compute_price = 'discount'
             + base = 'list_price' + a non-negative min_quantity + no date
             range. A zero minimum is the optional base tier; positive values
             are standard Odoo quantity breaks.
@@ -96,7 +96,7 @@ class ProductPricelistItem(models.Model):
             if item.compute_price != MANAGED_COMPUTE_PRICE:
                 raise ValidationError(_(
                     "Price Matrix rules must compute the price as a "
-                    "percentage discount."))
+                    "discount."))
             if item.base != MANAGED_BASE:
                 raise ValidationError(_(
                     "Price Matrix rules must be based on the Sales Price."))

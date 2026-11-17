@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Odoo 19 group model: res.groups carry a privilege_id pointing to
+    <!-- Odoo 20 group model: res.groups carry a privilege_id pointing to
          res.groups.privilege (which holds the section category). -->
     <record model="res.groups.privilege" id="res_groups_privilege_price_matrix">
         <field name="name">Price Matrix</field>

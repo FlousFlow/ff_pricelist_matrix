@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import base64
 import io
 
 import openpyxl
@@ -8,7 +7,7 @@ from psycopg2 import errors as pg_errors
 from odoo import Command
 from odoo.exceptions import AccessError, UserError
 from odoo.tests import TransactionCase, tagged
-from odoo.tools import float_compare, float_is_zero
+from odoo.tools import BinaryBytes, float_compare, float_is_zero
 
 
 @tagged('post_install', '-at_install')
@@ -66,7 +65,7 @@ class TestPriceMatrix(TransactionCase):
         cls.board = cls.env['price.matrix.board']
 
         # --- a matrix manager user (su=False) for permission tests
-        # Odoo 19: the res.users groups field is `group_ids`
+        # Odoo 20: the res.users groups field is `group_ids`
         cls.manager = cls.env['res.users'].create({
             'name': 'Matrix Manager',
             'login': 'matrix_manager',
@@ -126,7 +125,7 @@ class TestPriceMatrix(TransactionCase):
         self.assertEqual(len(item), 1)
         self.assertTrue(item.managed_by_matrix)
         self.assertEqual(item.applied_on, '2_product_category')
-        self.assertEqual(item.compute_price, 'percentage')
+        self.assertEqual(item.compute_price, 'discount')
         self.assertEqual(item.base, 'list_price')
         self.assertFalse(item.min_quantity)
         self.assertPrice(self.pl_wholesale, self.p_cinnamon, 17.0)
@@ -152,9 +151,9 @@ class TestPriceMatrix(TransactionCase):
             'pricelist_id': self.pl_wholesale.id,
             'applied_on': '1_product',
             'product_tmpl_id': self.p_cinnamon.product_tmpl_id.id,
-            'compute_price': 'percentage',
+            'compute_price': 'discount',
             'base': 'list_price',
-            'percent_price': 20.0,
+            'price_discount': 20.0,
         })
         # Exception (20%) beats category (10%) per standard rule order.
         self.assertPrice(self.pl_wholesale, self.p_cinnamon, 16.0)
@@ -229,7 +228,7 @@ class TestPriceMatrix(TransactionCase):
         item = self.pl_wholesale.item_ids
         self.board.write_cells(self.cells(
             self.pl_wholesale, [(self.categ_mini, 12.5)]))
-        self.assertEqual(item.percent_price, 12.5)
+        self.assertEqual(item.price_discount, 12.5)
         change = self.env['price.matrix.change'].search([
             ('operation', '=', 'update'),
             ('pricelist_id', '=', self.pl_wholesale.id),
@@ -255,7 +254,7 @@ class TestPriceMatrix(TransactionCase):
         buff = io.BytesIO()
         wb.save(buff)
         wizard = self.env['price.matrix.import'].create({
-            'file': base64.b64encode(buff.getvalue()),
+            'file': BinaryBytes(buff.getvalue()),
             'file_name': 'matrix.xlsx',
             'rounding_tolerance': 0.01,
         })
@@ -281,7 +280,7 @@ class TestPriceMatrix(TransactionCase):
         self.assertEqual(len(items), 1)
         self.assertTrue(items.managed_by_matrix)
         self.assertTrue(float_compare(
-            items.percent_price, 15.0, precision_digits=4) == 0)
+            items.price_discount, 15.0, precision_digits=4) == 0)
 
     def test_08_import_inconsistent_category(self):
         wizard = self._import_wizard([
@@ -321,15 +320,15 @@ class TestPriceMatrix(TransactionCase):
             'pricelist_id': self.pl_retail.id,
             'applied_on': '2_product_category',
             'categ_id': self.categ_biscuits.id,
-            'compute_price': 'percentage',
+            'compute_price': 'discount',
             'base': 'list_price',
-            'percent_price': 12.0,
+            'price_discount': 12.0,
         })
         # Editing an unrelated cell keeps the manual rule intact.
         self.board.write_cells(self.cells(
             self.pl_wholesale, [(self.categ_mini, 15.0)]))
         self.assertTrue(manual.exists())
-        self.assertEqual(manual.percent_price, 12.0)
+        self.assertEqual(manual.price_discount, 12.0)
 
         # Clearing a managed cell deletes the managed rule only.
         self.board.write_cells(self.cells(
@@ -341,7 +340,7 @@ class TestPriceMatrix(TransactionCase):
         conflicting = self.cells(self.pl_retail, [(self.categ_biscuits, 8.0)])
         with self.assertRaises(UserError):
             self.board.write_cells(conflicting)
-        self.assertEqual(manual.percent_price, 12.0)
+        self.assertEqual(manual.price_discount, 12.0)
         # ...and the manual rule still wins the tie-break without force
         # because it was NOT overwritten by the failed write.
         # With force both rules coexist (recent rule wins, standard order).
@@ -435,9 +434,9 @@ class TestPriceMatrix(TransactionCase):
                 'pricelist_id': self.pl_wholesale.id,
                 'categ_id': self.categ_mini.id,
                 'applied_on': '2_product_category',
-                'compute_price': 'percentage',
+                'compute_price': 'discount',
                 'base': 'list_price',
-                'percent_price': 10.0,
+                'price_discount': 10.0,
                 'managed_by_matrix': True,
             })
 
@@ -463,13 +462,14 @@ class TestPriceMatrix(TransactionCase):
     # ------------------------------------------------------------------
     def test_17_category_quantity_tiers(self):
         """Higher standard min_quantity wins; no custom pricing engine."""
+        self.pl_wholesale.item_ids.unlink()
         base = self.env['product.pricelist.item'].create({
             'pricelist_id': self.pl_wholesale.id,
             'categ_id': self.categ_mini.id,
             'applied_on': '2_product_category',
-            'compute_price': 'percentage',
+            'compute_price': 'discount',
             'base': 'list_price',
-            'percent_price': 5.0,
+            'price_discount': 5.0,
             'min_quantity': 0,
             'managed_by_matrix': True,
         })
@@ -477,9 +477,9 @@ class TestPriceMatrix(TransactionCase):
             'pricelist_id': self.pl_wholesale.id,
             'categ_id': self.categ_mini.id,
             'applied_on': '2_product_category',
-            'compute_price': 'percentage',
+            'compute_price': 'discount',
             'base': 'list_price',
-            'percent_price': 10.0,
+            'price_discount': 10.0,
             'min_quantity': 10,
             'managed_by_matrix': True,
         })
@@ -487,9 +487,9 @@ class TestPriceMatrix(TransactionCase):
             'pricelist_id': self.pl_wholesale.id,
             'categ_id': self.categ_mini.id,
             'applied_on': '2_product_category',
-            'compute_price': 'percentage',
+            'compute_price': 'discount',
             'base': 'list_price',
-            'percent_price': 15.0,
+            'price_discount': 15.0,
             'min_quantity': 50,
             'managed_by_matrix': True,
         })
@@ -503,9 +503,9 @@ class TestPriceMatrix(TransactionCase):
                 'pricelist_id': self.pl_wholesale.id,
                 'categ_id': self.categ_mini.id,
                 'applied_on': '2_product_category',
-                'compute_price': 'percentage',
+                'compute_price': 'discount',
                 'base': 'list_price',
-                'percent_price': 20.0,
+                'price_discount': 20.0,
                 'min_quantity': 10,
                 'managed_by_matrix': True,
             })
